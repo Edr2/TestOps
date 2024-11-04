@@ -6,7 +6,7 @@
    
 2. **Website Testing**  
    - Visit [https://example.com](https://example.com) and confirm that the home page opens.
-   - Select the "About" menu in the navigation bar, go to "Careers," and verify that the Careers page and its sections—Locations, Teams, and Life at [Website]—are accessible.
+   - Select the "Company" menu in the navigation bar, go to "Careers," and verify that the Careers page and its sections—Locations, Teams, and Life at [Website]—are accessible.
    - Navigate to [https://example.com/careers/quality-assurance](https://example.com/careers/quality-assurance), click "View All QA Jobs," filter jobs by location (Istanbul, Turkey) and department (Quality Assurance), and ensure a job list appears.
    - Confirm that each job listing includes "Quality Assurance" in the Position and Department fields and specifies "Istanbul, Turkey" as the location.
    - Click the "Apply" button for a job to confirm that it redirects to the job application form.
