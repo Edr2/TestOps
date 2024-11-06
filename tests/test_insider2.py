@@ -37,13 +37,13 @@ class InsiderTest(unittest.TestCase):
             self.driver.quit()
             logger.info("Closing WebDriver")
 
-    def test_01_homepage(self):
+    def test_201_homepage(self):
         """Test Insider homepage loads correctly"""
         self.driver.get("https://useinsider.com/")
         assert "Insider" in self.driver.title
         logger.info("Homepage test passed")
 
-    def test_02_careers_page(self):
+    def test_202_careers_page(self):
         """Test Careers page and its components"""
         self.driver.get("https://useinsider.com/")
 
@@ -80,7 +80,7 @@ class InsiderTest(unittest.TestCase):
 
         logger.info("Careers page test passed")
 
-    def test_03_qa_jobs(self):
+    def test_203_qa_jobs(self):
         # """Test QA jobs filtering and content"""
         # self.driver.get("https://useinsider.com/careers/quality-assurance/")
 
