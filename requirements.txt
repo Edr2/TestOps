@@ -2,3 +2,5 @@ selenium==4.16.0
 webdriver-manager==4.0.1
 pytest==7.4.3
 pytest-html==4.1.1
+pytest-xdist==3.6.1
+kubernetes==31.0.0

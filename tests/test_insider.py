@@ -25,10 +25,10 @@ class InsiderTest(unittest.TestCase):
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--remote-debugging-port=9222")
-        self.driver = webdriver.Chrome(options=chrome_options)
-        # self.driver = webdriver.Remote(
-        #     command_executor='http://localhost:4444/wd/hub',
-        #     options=chrome_options)
+        # self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            options=chrome_options)
         self.wait = WebDriverWait(self.driver, 10)
         logger.info("Setting up WebDriver")
 
