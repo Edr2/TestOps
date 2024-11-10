@@ -1,0 +1,2 @@
+# Chrome Node Pod Dockerfile
+FROM selenium/node-chrome:4.0

@@ -1,4 +1,4 @@
-# Test Controller Pod Dockerfile
+# App that will send tests to Test Controller
 FROM python:3.9-slim
 
 # Install Chrome and Chrome Driver
