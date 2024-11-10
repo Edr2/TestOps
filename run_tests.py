@@ -16,8 +16,10 @@ def apply_yaml(file_path):
     """Applies a YAML configuration file."""
     try:
         with open(file_path) as f:
-            utils.create_from_yaml(v1.api_client, file_path, namespace="default")
+            result = utils.create_from_yaml(v1.api_client, file_path, namespace="default")
+            deployment_name = result[0][0].metadata.name
             print(f"Applied YAML configuration from {file_path}.")
+            return deployment_name
     except utils.FailToCreateError as e:
         status = json.loads(e.api_exceptions[0].body)
         if status['reason'] == "AlreadyExists":
@@ -69,27 +71,34 @@ def check_deployment_ready(deployment_name, retries=10, delay=5):
 def deploy_chrome_nodes(node_count, chrome_node_yaml_path):
     """Deploys Chrome Node Pods from a YAML file based on node count."""
 
+    # TODO implement node_count
     deployment_name = apply_yaml(chrome_node_yaml_path)
-    check_deployment_ready(deployment_name)
+    return check_deployment_ready(deployment_name)
 
 def deploy_test_controller(test_controller_yaml_path):
     """Deploys the Test Controller Pod from a YAML file."""
     deployment_name = apply_yaml(test_controller_yaml_path)
     return check_deployment_ready(deployment_name)
 
+def deploy_svc_controller(svc_controller_yaml_path):
+    """Deploys the Test Controller Pod from a YAML file."""
+    apply_yaml(svc_controller_yaml_path)
+    return True
+
 def run_pytest():
     """Run pytest on the test directory."""
-    result = pytest.main(["-n", "2", "tests"])  # Replace 'tests' with your test directory path
+    result = pytest.main(["-n", "2", "tests"])
     return result
 
 if __name__ == "__main__":
-    node_count = 1  # Define your required Chrome Node count here
-    chrome_node_yaml_path = "./k8s/selenium-node-chrome-deployment.yaml"  # Replace with the path to your Chrome Node YAML
-    test_controller_yaml_path = "./k8s/selenium-hub-deployment.yaml"  # Replace with the path to your Test Controller YAML
+    node_count = 2
+    chrome_node_yaml_path = "./k8s/selenium-node-chrome-deployment.yaml"
+    test_controller_yaml_path = "./k8s/selenium-hub-deployment.yaml"
+    svc_controller_yaml_path = "./k8s/selenium-hub-svc.yaml"
     
     deploy_test_controller(test_controller_yaml_path)
     deploy_chrome_nodes(node_count, chrome_node_yaml_path)
-    # run_tests(node_count, chrome_node_yaml_path, test_controller_yaml_path)
+    deploy_svc_controller(svc_controller_yaml_path)
 
     result = run_pytest()
     if result == 0:

@@ -15,3 +15,13 @@
    **Test Execution by Chrome Node**s**: Upon receiving test tasks from the Selenium Hub, each Chrome Node Pod executes the test cases in an instance of the Chrome browser. The Hub facilitates communication between the test scripts and the browser nodes, enabling seamless test execution.
 
    **Result Collection**: After execution, the results are returned to the Test Controller (Selenium Hub) for logging, monitoring, and reporting purposes.
+
+## Deploy Locally
+1. python -m venv venv
+2. pip install -r requirements.txt
+3. python run_tests.py
+
+## Deploy AWS
+1. eksctl create cluster -f ./cloudformation/eksctl-cluster.yaml
+2. aws eks update-kubeconfig --region eu-central-1 --name dev
+2. Run same commands as in `Deploy Locally`
