@@ -25,3 +25,4 @@
 1. eksctl create cluster -f ./cloudformation/eksctl-cluster.yaml
 2. aws eks update-kubeconfig --region eu-central-1 --name dev
 2. Run same commands as in `Deploy Locally`
+
